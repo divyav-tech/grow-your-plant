@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garden</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <svg viewBox="0 0 350 100" id="weatherSky" class="weather-clear">
+        <g class="sun">
+            <circle cx="320" cy="20" r="20" fill="#f9d71c" />
+        </g>
+        <g class="clouds">
+            <ellipse cx="60" cy="85" rx="25" ry="15" fill="#ffffff" />
+            <ellipse cx="85" cy="90" rx="20" ry="10" fill="#ffffff" />
+            <ellipse cx="40" cy="85" rx="25" ry="9" fill="#ffffff" />
+        </g>
+    </svg>
+    <div class="cards-container">
+        <div class="feature-card locked" id="waterCard">
+            <div class="card-icon">💧</div>
+            <div class="card-title">Water</div>
+            <div class="card-desc">Water your plant to see a surprise 👀</div>
+            <button id="waterBtn" class="card-btn" disabled>Water the Plant</button>
+        </div>
+
+        <div class="feature-card locked" id="butterflyCard">
+            <div class="card-icon">🦋</div>
+            <div class="card-title">Butterfly</div>
+            <div class="card-desc">Grow your plant fully and let it flower to attract one</div>
+            <button id="butterflyBtn" class="card-btn" disabled>🔒 Locked</button>
+        </div>
+
+        <div class="feature-card" id="weatherCard">
+            <div class="card-icon">☀️</div>
+            <div class="card-title">Weather</div>
+            <div class="card-desc">Switch things up — clear skies or rain?</div>
+            <button id="weatherBtn" class="card-btn">Toggle Weather</button>
+        </div>
+
+    </div>
+    <div class="garden-container">
+        <svg viewBox="0 0 100 150" id="plant">
+            <!-- shadow under pot -->
+            <ellipse cx="55" cy="155" rx="28" ry="5" fill="rgba(0,0,0,0.15)" />
+            <!-- Sprouting -->
+            <g class="sprout" style="display:none">
+                <rect x="53" y="88" rx="5" width="2" height="15" fill="#5a8f3d"></rect>
+
+                <ellipse cx="50" cy="85" rx="8" ry="4" fill="#6fae4a" transform="rotate(50 50 85)" />
+
+                <ellipse cx="55" cy="107" rx="5" ry="9" fill="#3f6b30" transform="rotate(30 55 107)" />
+                <ellipse cx="52" cy="107" rx="1" ry="5" fill="#8fcf6f" transform="rotate(30 55 107)" />
+            </g>
+
+
+            <g class="seed" style="display:none">
+                <ellipse cx="55" cy="107" rx="5" ry="9" fill="#3f6b30" stroke="#2d4d22" stroke-width="1"
+                    transform="rotate(30 55 107)" />
+                <ellipse cx="52" cy="107" rx="1" ry="5" fill="#8fcf6f" transform="rotate(30 55 107)" />
+            </g>
+
+            <!-- grow stage 1 -->
+            <g class="grow1" style="display: none;">
+                <rect x="53" y="92" rx="5" width="3" height="25" fill="#5a8f3d"></rect>
+
+                <ellipse cx="47" cy="95" rx="8" ry="4" fill="#6fae4a" transform="rotate(30 45 95)" />
+                <ellipse cx="62" cy="95" rx="8" ry="4" fill="#6fae4a" transform="rotate(-30 65 95)" />
+            </g>
+
+            <!-- grow stage -->
+            <g class="grow2" style="display: none;">
+                <rect x="53" y="70" rx="5" width="3.5" height="47" fill="#5a8f3d"></rect>
+                <ellipse cx="47" cy="100" rx="9" ry="5" fill="#6fae4a" transform="rotate(30 47 100)" />
+                <ellipse cx="63" cy="100" rx="9" ry="5" fill="#6fae4a" transform="rotate(-30 63 100)" />
+                <ellipse cx="45" cy="85" rx="11" ry="5" fill="#6fae4a" transform="rotate(35 45 85)" />
+                <ellipse cx="65" cy="85" rx="11" ry="5" fill="#6fae4a" transform="rotate(-35 65 85)" />
+            </g>
+
+            <!-- grow stage 3 — big plant-->
+            <g class="grow3" style="display: none;">
+                <rect x="52.5" y="47" rx="5" width="4.5" height="65" fill="#4d7a34"></rect>
+
+                <ellipse cx="40" cy="100" rx="13" ry="6" fill="#6fae4a" transform="rotate(30 40 105)" />
+                <ellipse cx="70" cy="100" rx="13" ry="6" fill="#6fae4a" transform="rotate(-30 70 105)" />
+
+                <!-- mid leaves -->
+                <ellipse cx="42" cy="85" rx="12" ry="5" fill="#6fae4a" transform="rotate(35 42 88)" />
+                <ellipse cx="67" cy="85" rx="12" ry="5" fill="#6fae4a" transform="rotate(-35 68 88)" />
+
+                <ellipse cx="46" cy="70" rx="10" ry="4" fill="#6fae4a" transform="rotate(40 46 70)" />
+                <ellipse cx="64" cy="70" rx="10" ry="4" fill="#6fae4a" transform="rotate(-40 64 70)" />
+                <ellipse cx="48" cy="55" rx="8" ry="4" fill="#6fae4a" transform="rotate(40 46 55)" />
+
+                <!-- upper leaves-->
+                <ellipse cx="62" cy="55" rx="8" ry="4" fill="#6fae4a" transform="rotate(-40 64 55)" />
+            </g>
+            <!-- Soil surface -->
+            <ellipse cx="55" cy="115" rx="22" ry="5" fill="#3b2415" />
+
+            <!-- pot/soil -->
+            <rect x="35" y="120" rx="5" width="40" height="35" fill="#c17a4d" />
+            <rect x="65" y="120" rx="5" width="10" height="35" fill="#9c5e37" />
+            <rect x="30" y="115" rx="5" width="50" height="10" fill="#7a4a2b" />
+
+            <!-- Flowers -->
+            <g class="flower1" transform="translate(70, 68)" style="display: none;">
+                <ellipse cx="0" cy="-6" rx="3" ry="4" fill="#f28fb1" transform="rotate(0)" />
+                <ellipse cx="0" cy="-6" rx="3" ry="4" fill="#f28fb1" transform="rotate(72)" />
+                <ellipse cx="0" cy="-6" rx="3" ry="4" fill="#f28fb1" transform="rotate(144)" />
+                <ellipse cx="0" cy="-6" rx="3" ry="4" fill="#f28fb1" transform="rotate(216)" />
+                <ellipse cx="0" cy="-6" rx="3" ry="4" fill="#f28fb1" transform="rotate(288)" />
+                <circle cx="0" cy="0" r="3" fill="#f4c542" />
+            </g>
+            <g class="flower2" transform="translate(50, 60)" style="display: none;">
+                <ellipse cx="0" cy="-4" rx="2" ry="3" fill="#f28fb1" transform="rotate(0)" />
+                <ellipse cx="0" cy="-4" rx="2" ry="3" fill="#f28fb1" transform="rotate(72)" />
+                <ellipse cx="0" cy="-4" rx="2" ry="3" fill="#f28fb1" transform="rotate(144)" />
+                <ellipse cx="0" cy="-4" rx="2" ry="3" fill="#f28fb1" transform="rotate(216)" />
+                <ellipse cx="0" cy="-4" rx="2" ry="3" fill="#f28fb1" transform="rotate(288)" />
+                <circle cx="0" cy="0" r="2" fill="#f4c542" />
+            </g>
+            <g class="flower3" transform="translate(40, 90)" style="display: none;">
+                <ellipse cx="0" cy="-6" rx="3" ry="4" fill="#f28fb1" transform="rotate(0)" />
+                <ellipse cx="0" cy="-6" rx="3" ry="4" fill="#f28fb1" transform="rotate(72)" />
+                <ellipse cx="0" cy="-6" rx="3" ry="4" fill="#f28fb1" transform="rotate(144)" />
+                <ellipse cx="0" cy="-6" rx="3" ry="4" fill="#f28fb1" transform="rotate(216)" />
+                <ellipse cx="0" cy="-6" rx="3" ry="4" fill="#f28fb1" transform="rotate(288)" />
+                <circle cx="0" cy="0" r="3" fill="#f4c542" />
+            </g>
+            <g class="flower4" transform="translate(58, 80)" style="display: none;">
+                <ellipse cx="0" cy="-4" rx="2" ry="3" fill="#f28fb1" transform="rotate(0)" />
+                <ellipse cx="0" cy="-4" rx="2" ry="3" fill="#f28fb1" transform="rotate(72)" />
+                <ellipse cx="0" cy="-4" rx="2" ry="3" fill="#f28fb1" transform="rotate(144)" />
+                <ellipse cx="0" cy="-4" rx="2" ry="3" fill="#f28fb1" transform="rotate(216)" />
+                <ellipse cx="0" cy="-4" rx="2" ry="3" fill="#f28fb1" transform="rotate(288)" />
+                <circle cx="0" cy="0" r="2" fill="#f4c542" />
+            </g>
+            <g class="flower5" transform="translate(70, 98)" style="display: none;">
+                <ellipse cx="0" cy="-6" rx="3" ry="4" fill="#f28fb1" transform="rotate(0)" />
+                <ellipse cx="0" cy="-6" rx="3" ry="4" fill="#f28fb1" transform="rotate(72)" />
+                <ellipse cx="0" cy="-6" rx="3" ry="4" fill="#f28fb1" transform="rotate(144)" />
+                <ellipse cx="0" cy="-6" rx="3" ry="4" fill="#f28fb1" transform="rotate(216)" />
+                <ellipse cx="0" cy="-6" rx="3" ry="4" fill="#f28fb1" transform="rotate(288)" />
+                <circle cx="0" cy="0" r="3" fill="#f4c542" />
+            </g>
+            <g class="flower6" transform="translate(50, 105)" style="display: none;">
+                <ellipse cx="0" cy="-4" rx="2" ry="3" fill="#f28fb1" transform="rotate(0)" />
+                <ellipse cx="0" cy="-4" rx="2" ry="3" fill="#f28fb1" transform="rotate(72)" />
+                <ellipse cx="0" cy="-4" rx="2" ry="3" fill="#f28fb1" transform="rotate(144)" />
+                <ellipse cx="0" cy="-4" rx="2" ry="3" fill="#f28fb1" transform="rotate(216)" />
+                <ellipse cx="0" cy="-4" rx="2" ry="3" fill="#f28fb1" transform="rotate(288)" />
+                <circle cx="0" cy="0" r="2" fill="#f4c542" />
+            </g>
+            <g class="flower7" transform="translate(60, 50)" style="display: none;">
+                <ellipse cx="0" cy="-5" rx="3" ry="4" fill="#f28fb1" transform="rotate(0)" />
+                <ellipse cx="0" cy="-5" rx="3" ry="4" fill="#f28fb1" transform="rotate(72)" />
+                <ellipse cx="0" cy="-5" rx="3" ry="4" fill="#f28fb1" transform="rotate(144)" />
+                <ellipse cx="0" cy="-5" rx="3" ry="4" fill="#f28fb1" transform="rotate(216)" />
+                <ellipse cx="0" cy="-5" rx="3" ry="4" fill="#f28fb1" transform="rotate(288)" />
+                <circle cx="0" cy="0" r="3" fill="#f4c542" />
+            </g>
+            <g transform="translate(55, 35)" style="display: none;" class="butterfly-wrapper">
+                <g class="butterfly">
+                        <!-- body -->
+                        <ellipse cx="10" cy="20" rx="1.2" ry="7" fill="#3d2b1f" transform="rotate(-50 10 20)" />
+
+                        <!-- back wing -->
+                        <ellipse cx="11" cy="10" rx="6" ry="9" fill="#e88a1f" />
+
+                        <!-- Front wig -->
+                        <ellipse cx="19" cy="20" rx="8" ry="4" fill="#f2a71b" />
+
+                        <!-- Antenna -->
+                        <line x1="0" y1="12" x2="6" y2="17" stroke="#3d2b1f" stroke-width="0.6" />
+                        <line x1="5" y1="12" x2="6" y2="17" stroke="#3d2b1f" stroke-width="0.6" />
+                    </g>
+                </g>
+        </svg>
+
+        <button id="growBtn" class="grow-btn">Plant a Seed 🌱</button>
+        <div id="waterFeedback"></div>        
+    </div>
+</body>
+<script src="script.js"></script>
+
+</html>
